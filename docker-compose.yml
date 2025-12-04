@@ -1,0 +1,30 @@
+version: '3.9'
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: idateu
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build:
+      context: ./backend
+    environment:
+      PORT: 4000
+      MONGODB_URI: mongodb://mongo:27017/idateu
+      ISSUER_ADDRESS: 0x0000000000000000000000000000000000000000
+    depends_on:
+      - mongo
+    ports:
+      - "4000:4000"
+    # For quick local edits without rebuild, uncomment the next lines:
+    # volumes:
+    #   - ./backend:/app
+
+volumes:
+  mongo_data:
+
