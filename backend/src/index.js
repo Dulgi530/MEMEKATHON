@@ -40,12 +40,12 @@ async function start() {
 }
 
 // Only start server if run directly
-// console.log('DEBUG:', import.meta.url, `file://${process.argv[1]}`);
-// Simplified check or just run it if this is the main module
-start().catch((err) => {
-  console.error('Failed to start server', err);
-  process.exit(1);
-});
+if (import.meta.url === `file://${process.argv[1]}`) {
+  start().catch((err) => {
+    console.error('Failed to start server', err);
+    process.exit(1);
+  });
+}
 
 export default app;
 

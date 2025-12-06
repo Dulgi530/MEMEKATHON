@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.19;
 
 // Lightweight, self-contained ERC20 for tests and local dev
 // No external dependencies; includes mint/burn and ownership.
